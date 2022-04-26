@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+.main{
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+}
+.right{
+
+    }
+.ro{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    }
+@media (max-width: 600px){
+    .card{
+
+    }
+    .right{
+    display: none;
+    }
+    .left{
+        display: none;
+    }
+    .ro{
+    display: grid;
+    grid-template-columns: 100%;
+    }
+    body{
+        margin: 0px;
+        padding: 0px;
+    }
+        .main{
+    display: grid;
+    grid-template-columns: 100%;
+}
+}
+@media (min-width: 600px){}
+
+</style>
+
+
+<div class="main">
+    <div class="left">
+
+    </div>
+    <div class="ro" style="">
+        {% for p in post %}
+        <a href="{% url 'post-details' pk=p.pk %}">
+        <div class="card" style="height:auto; min-height: 10px; background-color: #eee; padding: 5px;">
+            <img src="{{p.image.url}}" style="height: 200px; width: 100%;">
+            <audio src="{{p.file.url}}">
+                </audio>
+                <h2 style="margin: 0 auto; text-align: center;"> {{ p.title }}</h2>
+            <span style="margin: 0 auto; text-align: center;"> {{ p.content|truncatewords:10 }}</span>
+
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+    <div class="right">
+
+    </div>
+</div>
+{% endblock %}
+
